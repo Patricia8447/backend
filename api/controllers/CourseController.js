@@ -40,6 +40,18 @@ module.exports = {
             return res.redirect('/');
         }
     },
+
+     // action - read
+     read: async function (req, res) {
+
+        var thatCourse = await Course.findOne(req.params.id).populate("student");
+
+        if (!thatCourse) return res.notFound();
+
+       // return res.view('event/read', { event: thatCourse });
+
+       return res.json({thatCourse});
+    },
   
 
 };

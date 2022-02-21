@@ -47,4 +47,6 @@ module.exports.routes = {
 
   'DELETE /course/:id': 'CourseController.delete',
 
+  'GET /course/read/:id': 'CourseController.read',
+
 };
