@@ -49,4 +49,6 @@ module.exports.routes = {
 
   'GET /course/read/:id': 'CourseController.read',
 
+  'POST /student/course/remove/:fk': 'StudentController.remove',
+
 };
