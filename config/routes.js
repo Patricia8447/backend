@@ -51,4 +51,6 @@ module.exports.routes = {
 
   'POST /student/course/remove/:fk': 'StudentController.remove',
 
+  'POST /course/update/:id': 'StudentController.update',
+
 };

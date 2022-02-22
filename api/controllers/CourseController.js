@@ -52,6 +52,19 @@ module.exports = {
 
        return res.json([thatCourse]);
     },
+
+    update: async function (req, res) {
+
+        if (req.method == "GET") {
+            var thatCourse = await Course.findOne(req.params.id);
+            if (!thatCourse) return res.notFound();
+            return res.json([thatCourse]);
+        } else {
+            var updateEvent = await Course.updateOne(req.params.id).set(req.body)
+            if (!updateEvent) return res.notFound();
+            return res.ok("Course updated");
+        }
+    },
   
 
 };
