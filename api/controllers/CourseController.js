@@ -50,7 +50,7 @@ module.exports = {
 
        // return res.view('event/read', { event: thatCourse });
 
-       return res.json({thatCourse});
+       return res.json([thatCourse]);
     },
   
 
