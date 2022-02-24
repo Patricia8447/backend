@@ -11,20 +11,8 @@ module.exports = {
         if (!await Student.findOne(req.session.studentId)) return res.status(404).json("Student not found.");
 
         var thatCourse = await Course.findOne(req.params.fk).populate("student");
-        //var thatStudents = await Course.findOne(req.params.fk).populate("student")
         
         if (!thatCourse) return res.status(404).json("Course not found.");
-
-        // if (thatEvent.user.length > 0)
-        //     return res.status(409).json("Already added.");   // conflict
-
-        // if (thatUsers.user.length >= thatEvent.quota)
-        //     return res.status(409).json("Event quota not enough.");  
-
-        // if (thatEvent.quota < 1)
-        //     return res.status(409).json("Event quota not enough!")
-
-        // await User.addToCollection(req.session.userId, "event").members(req.params.fk);
 
         return res.ok();
     },
@@ -34,15 +22,15 @@ module.exports = {
 
         return res.status(201).json({ id: student.id });
     },
-    
-    // json: async function (req, res) {
-    //     var everystudents = await Student.find();
-    //     return res.json(everystudents);
-    // },
+
+    json: async function (req, res) {
+        var everystudents = await Student.find();
+        return res.json(everystudents);
+    },
 
     populate: async function (req, res) {
 
-        var student = await Student.find({code: "C11111"});
+        var student = await Student.find({ code: "C11111" });
 
         if (!student) return res.notFound();
 
@@ -51,21 +39,21 @@ module.exports = {
     },
     remove: async function (req, res) {
 
-        if (!await Student.find({code: "C11111"})) return res.status(404).json("Student not found.");
+        if (!await Student.find({ id: "1" })) return res.status(404).json("Student not found.");
 
         //var thatCourse = await Course.findOne(req.params.fk).populate("student");
         var thatCourse = await Course.find(req.params.id).populate("student");
 
         if (!thatCourse) return res.status(404).json("Course not found.");
 
-        if (thatCourse.student.length == 0)
-            return res.status(409).json("Nothing to delete.");    // conflict
+        // if (thatCourse.student.length == 0)
+        //     return res.status(409).json("Nothing to delete.");    // conflict
 
-        await Student.removeFromCollection("course").members(req.params.id);
+        await Student.removeFromCollection("1", "course").members(req.params.id);
 
         return res.ok();
     },
-  
+
 
 };
 
